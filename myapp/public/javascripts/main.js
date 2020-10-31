@@ -72,9 +72,9 @@ if (document.getElementById('cus_Frame')) {
         height = document.getElementById('height').value;
         width = document.getElementById('width').value;
 
-        ChangeHeight = height*113.38582677 ;
+        ChangeHeight = height * 113.38582677;
 
-        frame_Width = width<height? width*113.38582677 * 10/100:height*113.38582677*10/100;
+        frame_Width = width < height ? width * 113.38582677 * 10 / 100 : height * 113.38582677 * 10 / 100;
 
         frameadder();
         innerFrameadder();
@@ -94,8 +94,8 @@ if (document.getElementById('cus_Frame')) {
         width = document.getElementById('width').value;
         height = document.getElementById('height').value;
 
-        ChangeWidth = width*113.38582677;
-        frame_Width = width<height? width*113.38582677 * 10/100:height*113.38582677*10/100;
+        ChangeWidth = width * 113.38582677;
+        frame_Width = width < height ? width * 113.38582677 * 10 / 100 : height * 113.38582677 * 10 / 100;
 
         frameadder();
         innerFrameadder();
@@ -199,10 +199,10 @@ if (document.getElementById('cus_Frame')) {
         document.getElementById('height').value = (parseInt(size['height']));
         frame_Width = width + height;
 
-        ChangeWidth = width*113.38582677;
-        ChangeHeight = height*113.38582677 ;
+        ChangeWidth = width * 113.38582677;
+        ChangeHeight = height * 113.38582677;
 
-        frame_Width = width<height? width*113.38582677 * 10/100:height*113.38582677*10/100;
+        frame_Width = width < height ? width * 113.38582677 * 10 / 100 : height * 113.38582677 * 10 / 100;
 
         frameadder();
         innerFrameadder();
@@ -317,16 +317,15 @@ if (document.getElementById('cus_Frame')) {
             ctx.lineTo(pathPoints[6], pathPoints[7]);
             ctx.closePath();
 
-            
+
             // make the current path a clipping path
             ctx.clip();
             ctx.scale(a, b);
             ctx.rotate(d * Math.PI / 180);
             // draw the image which will be clipped except in the clipping path
-            for(i=0;i<20;i++)
-            {
-                ctx.drawImage(img, x + canvasWidth*i, y, canvasWidth + canvasWidth, frameWidth);
-                ctx.drawImage(img, x - canvasWidth*i, y, canvasWidth + canvasWidth, frameWidth);
+            for (i = 0; i < 20; i++) {
+                ctx.drawImage(img, x + canvasWidth * i, y, canvasWidth + canvasWidth, frameWidth);
+                ctx.drawImage(img, x - canvasWidth * i, y, canvasWidth + canvasWidth, frameWidth);
 
             }
             // ctx.drawImage(img, x, y, (canvasHeight*2), frameWidth);
@@ -340,7 +339,7 @@ if (document.getElementById('cus_Frame')) {
 
 
         // clears the canvas pixels 
-        ctx.clearRect(0, 0,  canvasWidth, canvasHeight);
+        ctx.clearRect(0, 0, canvasWidth, canvasHeight);
         // creating a new image object   
         let img = new Image();
         img.onload = () => {
@@ -502,10 +501,9 @@ if (document.getElementById('cus_Frame')) {
             ctx.rotate(d * Math.PI / 180);
             // draw the image which will be clipped except in the clipping path
 
-            for(i=0;i<20;i++)
-            {
-                ctx.drawImage(img, x + canvasWidth*i, y, canvasWidth + canvasWidth, frameWidth);
-                ctx.drawImage(img, x - canvasWidth*i, y, canvasWidth + canvasWidth, frameWidth);
+            for (i = 0; i < 20; i++) {
+                ctx.drawImage(img, x + canvasWidth * i, y, canvasWidth + canvasWidth, frameWidth);
+                ctx.drawImage(img, x - canvasWidth * i, y, canvasWidth + canvasWidth, frameWidth);
 
             }
             // restore the unclipped context (==undo the clipping path)
@@ -617,10 +615,9 @@ if (document.getElementById('cus_Frame')) {
             ctx.rotate(d * Math.PI / 180);
             // draw the image which will be clipped except in the clipping path
 
-            for(i=0;i<20;i++)
-            {
-                ctx.drawImage(img, x + canvasWidth*i, y, canvasWidth + canvasWidth, frameWidth);
-                ctx.drawImage(img, x - canvasWidth*i, y, canvasWidth + canvasWidth, frameWidth);
+            for (i = 0; i < 20; i++) {
+                ctx.drawImage(img, x + canvasWidth * i, y, canvasWidth + canvasWidth, frameWidth);
+                ctx.drawImage(img, x - canvasWidth * i, y, canvasWidth + canvasWidth, frameWidth);
 
             }
             // restore the unclipped context (==undo the clipping path)
@@ -636,14 +633,14 @@ if (document.getElementById('cus_Frame')) {
 
             var pat = ctx.createPattern(img, "repeat");
 
-            topbottom([frameWidth, frameWidth, canvasWidth-frameWidth, frameWidth, (canvasWidth-frameWidth-frameWidth), frameWidth+frameWidth, frameWidth+frameWidth, frameWidth+frameWidth], img, frameWidth, frameWidth);
+            topbottom([frameWidth, frameWidth, canvasWidth - frameWidth, frameWidth, (canvasWidth - frameWidth - frameWidth), frameWidth + frameWidth, frameWidth + frameWidth, frameWidth + frameWidth], img, frameWidth, frameWidth);
 
-            topbottom([frameWidth, canvasHeight-frameWidth, canvasWidth-frameWidth, canvasHeight-frameWidth, (canvasWidth - frameWidth-frameWidth), (canvasHeight - frameWidth-frameWidth), frameWidth+frameWidth, canvasHeight - frameWidth-frameWidth], img, frameWidth, -canvasHeight+frameWidth, 1, -1);
+            topbottom([frameWidth, canvasHeight - frameWidth, canvasWidth - frameWidth, canvasHeight - frameWidth, (canvasWidth - frameWidth - frameWidth), (canvasHeight - frameWidth - frameWidth), frameWidth + frameWidth, canvasHeight - frameWidth - frameWidth], img, frameWidth, -canvasHeight + frameWidth, 1, -1);
 
-            sides([frameWidth, frameWidth, frameWidth, canvasHeight-frameWidth, frameWidth+frameWidth, (canvasHeight - frameWidth-frameWidth), frameWidth+frameWidth, frameWidth+frameWidth], img, -canvasWidth, frameWidth, 1, 1, 270);
+            sides([frameWidth, frameWidth, frameWidth, canvasHeight - frameWidth, frameWidth + frameWidth, (canvasHeight - frameWidth - frameWidth), frameWidth + frameWidth, frameWidth + frameWidth], img, -canvasWidth, frameWidth, 1, 1, 270);
 
-            sides([canvasWidth-frameWidth, frameWidth, canvasWidth-frameWidth, canvasHeight-frameWidth, canvasWidth - frameWidth-frameWidth, canvasHeight - frameWidth-frameWidth, canvasWidth - frameWidth-frameWidth, frameWidth+frameWidth], img, 0, -canvasWidth+frameWidth, 1, 1, 90);
-            
+            sides([canvasWidth - frameWidth, frameWidth, canvasWidth - frameWidth, canvasHeight - frameWidth, canvasWidth - frameWidth - frameWidth, canvasHeight - frameWidth - frameWidth, canvasWidth - frameWidth - frameWidth, frameWidth + frameWidth], img, 0, -canvasWidth + frameWidth, 1, 1, 90);
+
             imageDraw();
 
         };
@@ -670,6 +667,43 @@ if (document.getElementById('cus_Frame')) {
     })
 
 }
+
+
+$('#df').submit(function () {
+    $("#status").empty().text("File is uploading...");
+    $(this).ajaxSubmit({
+
+        error: function (xhr) {
+            status('Error: ' + xhr.status);
+        },
+
+        success: function (response) {
+            $("#status").empty().text(response);
+            console.log(response);
+        }
+    });
+    //Very important line, it disable the page refresh.
+    return false;
+});
+
+$('#fileupf').submit(function (e) {
+    var bt = document.getElementById('btSubmit');
+    $("#status").empty().text("Photo uploading...");
+    e.preventDefault();
+    var fd = new FormData($(this)[0]);
+    $.ajax({
+        url: '/upload',
+        data: fd,
+        processData: false,
+        contentType: false,
+        type: 'POST',
+        success: function (data) {
+            $("#status").empty().text("Thank you for uploading");
+            bt.disabled = true;
+        }
+    });
+});
+
 //function to read input image and display//
 function readURL(input) {
     if (input.files && input.files[0]) {
@@ -712,6 +746,10 @@ function htmlToJson() {
     var myObj = {
         "Cart Data": cart
     };
+
+    $.post("/shopify", { json_string: JSON.stringify(myObj) });
+
+
     alert(JSON.stringify(myObj));
 
 }

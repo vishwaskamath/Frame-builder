@@ -48,10 +48,12 @@
             </div>
             <div class="row">
               <div class="col-md-6">
-                <button type="button" class="btn btn-dark" style="background : black">
-                  <input id="fileUpload" type='file' onchange="readURL(this)" style="
-                  width: 100%;
-              " /></button>
+                <form id="fileupf" action="/upload" method="post" enctype="multipart/form-data">
+                  <input id="fileUpload" type="file" id="fileup" onchange="readURL(this)" name="photo" accept="image/*">
+                  
+                  <span id="status"></span>
+                </form>
+                
               </div>
 
             </div>
