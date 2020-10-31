@@ -70,12 +70,14 @@ if (document.getElementById('cus_Frame')) {
     $("#height").on('change', function () {
 
         height = document.getElementById('height').value;
+        width = document.getElementById('width').value;
 
-        ChangeHeight = height * 20;
-        frame_Width = height;
+        ChangeHeight = height*113.38582677 ;
 
-        document.getElementById("canvasBkGr").style.height = ChangeHeight + 'px';
+        frame_Width = width<height? width*113.38582677 * 10/100:height*113.38582677*10/100;
+
         frameadder();
+        imageDraw();
         document.getElementById("imagesize").innerHTML = width + 'cm' + 'X' + height + 'cm'; // set the summary part//
         document.getElementById("glasssize").innerHTML = width + 'cm' + 'X' + height + 'cm'; // set the summary part//
         outheight = parseFloat(height) + 3.0;
@@ -89,13 +91,14 @@ if (document.getElementById('cus_Frame')) {
     $("#width").on('change', function () {
 
         width = document.getElementById('width').value;
+        height = document.getElementById('height').value;
 
-        ChangeWidth = width * 20;
-        frame_Width = width;
+        ChangeWidth = width*113.38582677;
+        frame_Width = width<height? width*113.38582677 * 10/100:height*113.38582677*10/100;
         console.log(ChangeWidth);
-        document.getElementById("canvasBkGr").style.width = ChangeWidth + 'px';
 
         frameadder();
+        imageDraw();
         document.getElementById("imagesize").innerHTML = width + 'cm' + 'X' + height + 'cm'; // set the summary part//
         document.getElementById("glasssize").innerHTML = width + 'cm' + 'X' + height + 'cm'; // set the summary part//
         outheight = parseFloat(height) + 3.0;
@@ -328,7 +331,7 @@ if (document.getElementById('cus_Frame')) {
 
 
         // clears the canvas pixels 
-        ctx.clearRect(0, 0, 600, 600);
+        ctx.clearRect(0, 0,  canvasWidth, canvasHeight);
         // creating a new image object   
         let img = new Image();
         img.onload = () => {
@@ -355,8 +358,9 @@ if (document.getElementById('cus_Frame')) {
 
         let ctx = canvasBkGr.getContext('2d');
 
+
         // clearing previous image picture
-        ctx.clearRect(0, 0, 800, 800);
+        ctx.clearRect(0, 0, canvasWidth, canvasHeight);
         let img = new Image();
         img.src = photoImage;
 
