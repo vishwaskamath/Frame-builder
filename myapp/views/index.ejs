@@ -1,0 +1,1342 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+  <link rel='stylesheet' href='/stylesheets/style.css' />
+  <link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:wght@700&display=swap" rel="stylesheet">
+</head>
+
+<body id="cus_Frame">
+
+  <main class="page-cpf">
+
+
+    <div style="text-align: center;">
+      <h1>Custom Pictures Frame Online </h1>
+      <p>Standard and Custom sized picture frames, designed by you.</p>
+      <hr>
+    </div>
+
+
+    <div class="row">
+      <div class="col-md-6">
+
+
+
+        <canvas id="canvasFrGr" width="600px" height="800px"></canvas>
+        <canvas id="canvasBkGr" width="600px" height="800px"></canvas>
+
+      </div>
+
+
+
+      <div class="col-md-6">
+        <div>
+          <div id="side-tab-1" style="background:white; padding: 2%;">
+            <div class="row">
+              <div class="col-md-4">
+                <p>Upload Image (optional)</p>
+              </div>
+
+            </div>
+            <div class="row">
+              <div class="col-md-6">
+                <button type="button" class="btn btn-dark" style="background : black">
+                  <input id="fileUpload" type='file' onchange="readURL(this)" /></button>
+              </div>
+
+            </div>
+
+
+
+            <br>
+
+            <br>
+
+            <div class="row">
+
+              <div class="col-md-4">
+                <p> Image Size Custom
+                  <br>
+                  <select id="sizes" style="padding: 1%;">
+                    <option value="">Standard Sizes</option>
+                    <option value='{"width": "40", "height": "37",  "vwidth":"10.2", "vheight":"15.2" }'>4" x 6" (10.2
+                      x
+                      15.2 cm)</option>
+                    <option value='{"width": "37", "height": "35", "vwidth":"12.7", "vheight":"17.8" }'>5" x 7" (12.7
+                      x
+                      17.8
+                      cm)</option>
+                    <option value='{"width": "35", "height": "33",  "vwidth":"15.2", "vheight":"20.3" }'>6" x 8" (15.2
+                      x
+                      20.3 cm)</option>
+                    <option value='{"width": "33", "height": "31", "vwidth":"20.3", "vheight":"25.4" }'>8" x 10" (20.3
+                      x
+                      25.4 cm)</option>
+                    <option value='{"width": "31", "height": "29",  "vwidth":"20.3", "vheight":"30.5" }'>8" x 12"
+                      (20.3
+                      x
+                      30.5 cm)
+                    </option>
+                    <option value='{"width": "29", "height": "27",  "vwidth":"27.9", "vheight":"35.6" }'>11" x 14"
+                      (27.9
+                      x
+                      35.6 cm)
+                    </option>
+                    <option value='{"width": "27", "height": "25",  "vwidth":"30.5", "vheight":"40.6" }'>12" x 16"
+                      (30.5
+                      x
+                      40.6 cm)
+                    </option>
+                    <option value='{"width": "25", "height": "23",  "vwidth":"40.6", "vheight":"50.8" }'>16" x 20"
+                      (40.6
+                      x
+                      50.8 cm)
+                    </option>
+                    <option value='{"width": "23", "height": "21",  "vwidth":"40.6", "vheight":"61.0" }'>16" x 24"
+                      (40.6
+                      x
+                      61.0 cm)
+                    </option>
+                    <option value='{"width": "21", "height": "19", "vwidth":"45.6", "vheight":"61.0" }'>18" x 24"
+                      (45.6
+                      x
+                      61.0 cm)
+                    </option>
+                    <optgroup label="B">
+                      <option value='{"width": "18", "height": "18",  "vwidth":"70.7", "vheight":"100.0" }'>B1 (70.7 x
+                        100.0
+                        cm)</option>
+                      <option value='{"width": "24", "height": "22",  "vwidth":"50.0", "vheight":"70.7" }'>B2 (50.0 x
+                        70.7
+                        cm)</option>
+                    </optgroup>
+                    <optgroup label="A">
+                      <option value='{"width": "34", "height": "32",  "vwidth":"14.8", "vheight":"21.0" }'>A5 (14.8 x
+                        21.0
+                        cm)</option>
+                      <option value='{"width": "32", "height": "30",  "vwidth":"21.0", "vheight":"29.7" }'>A4 (21.0 x
+                        29.7
+                        cm)</option>
+                      <option value='{"width": "30", "height": "28",  "vwidth":"29.7", "vheight":"42.0" }'>A3 (29.7 x
+                        42.0
+                        cm)</option>
+                      <option value='{"width": "28", "height": "26",  "vwidth":"42.0", "vheight":"59.4" }'>A2 (42.0 x
+                        59.4
+                        cm)</option>
+                      <option value='{"width": "26", "height": "24",  "vwidth":"59.4", "vheight":"84.1" }'>A1 (59.4 x
+                        84.1
+                        cm)</option>
+                      <option value='{"width": "22", "height": "18",  "vwidth":"84.1", "vheight":"118.9" }'>A0 (84.1 x
+                        118.9
+                        cm)</option>
+                    </optgroup>
+                  </select>
+              </div>
+
+              <div class="col-md-8">
+
+                <p>
+                  Custom <br>
+
+                  <input type="number" id="width" min="10" max="30" aria-label="image width" step="0.1" value="10.2">
+                  &nbsp;<span>wide x </span> &nbsp;
+
+                  <input type="number" id="height" min="10" max="40" aria-label="image height" step="0.1" value="15.3">
+                  &nbsp; <span>high </span>
+                  &nbsp;
+                  &nbsp;
+                  <select id="unit">
+                    <option value='{"type": "1"}'>cm</option>
+                    <option value='{"type": "2"}'>inch</option>
+                  </select>
+                </p>
+              </div>
+
+
+
+
+
+            </div>
+          </div>
+          <br>
+          <br>
+          <br>
+
+          <button class="collapsible" class="btn btn-primary" data-toggle="collapse" href="#frames" role="button"
+            aria-expanded="false" aria-controls="collapseExample">Choose your Frame</button>
+          <br>
+          <br>
+          <br>
+
+          <div class="collapse" id="frames">
+            <p>
+              <button class="tablinks btn btn-dark" onclick="openTab(event, 'whiteframe')">WHITE</button>
+              <button class="tablinks btn btn-dark" onclick="openTab(event, 'goldframe')">GOLD</button>
+              <button class="tablinks btn btn-dark" onclick="openTab(event, 'onsaleframe')">ONSALE</button>
+              <button class="tablinks btn btn-dark" onclick="openTab(event, 'popularframe')">POPULAR</button>
+              <button class="tablinks btn btn-dark" onclick="openTab(event, 'colorframe')">COLORFUL</button>
+              <button class="tablinks btn btn-dark" onclick="openTab(event, 'stainframe')">STAINS</button>
+              <button class="tablinks btn btn-dark" onclick="openTab(event, 'blackframe')">BLACK</button>
+              <button class="tablinks btn btn-dark" onclick="openTab(event, 'silverframe')">SILVER</button>
+              <button class="tablinks btn btn-dark" onclick="openTab(event, 'alumframe')">ALUMINIUM</button>
+              <button class="tablinks btn btn-dark" onclick="openTab(event, 'rawframe')">RAW TIMBER</button>
+              <button class="tablinks btn btn-dark" onclick="openTab(event, 'floatframe')">FLOAT</button>
+            </p>
+
+            <br>
+            <br>
+            <div id="whiteframe" class="tabcontent">
+              <p>Select frames as per your choice!</p>
+
+
+              <div id="scrollable">
+
+                <div id="frame_items">
+                  <%
+                if(whiteframe.length!=0){
+                var i=1;
+                whiteframe.forEach(function(data){
+                %>
+                  <div class="item" style="padding:10px;">
+
+                    <div class="card" style="width: 18rem; background:#f1f0f0; padding: 5%; text-align: center;"
+                      id="cardi">
+
+                      <img class="card-img-top" src="<%=data.FRTHIMG %>" alt="Card image cap"
+                        data-src="<%=data.FRIMG %>" style="width: 30px;" id="<%=data.FRID %>">
+                      <div class="card-body" style="text-align: center;">
+                        <h5 class="card-title">CODE :<%=data.FRCODE %></h5>
+                        <p class="card-text">
+
+                        <ul style="text-align: start;">
+                          <li>
+                            Width : <%=data.FRWIDTH %> cm
+                          </li>
+                          <li>
+                            Depth : <%=data.FRDEPTH %> cm
+                          </li>
+                          <li>
+                            Rebate : <%=data.FRREBATE %> cm
+                          </li>
+                          <li>
+                            Material : <%=data.FRMATERIAL %>
+                          </li>
+                          <li>
+                            Color :<%=data.FRCOLOR %>
+                          </li>
+                          <li>
+                            Price Rate : <%=data.FRCOST %>
+                          </li>
+
+                        </ul>
+                        </p>
+
+
+                      </div>
+                    </div>
+                  </div>
+                  <%  i++; }) %>
+                  <% } else{ %>
+                  <tr>
+                    <td colspan="7">No Data Found</td>
+                  </tr>
+                  <% } %>
+
+
+
+                </div>
+              </div>
+            </div>
+
+            <div id="goldframe" class="tabcontent">
+              <p>Select frames as per your choice!</p>
+
+              <div id="scrollable">
+
+                <div id="frame_items">
+                  <%
+                if(goldframe.length!=0){
+                var i=1;
+                goldframe.forEach(function(data){
+                %>
+                  <div class="item" style="padding:10px;">
+
+                    <div class="card" style="width: 18rem; background:#f1f0f0; padding: 5%; text-align: center;"
+                      id="cardi">
+
+                      <img class="card-img-top" src="<%=data.FRTHIMG %>" alt="Card image cap"
+                        data-src="<%=data.FRIMG %>" style="width: 30px;" id="<%=data.FRID %>">
+                      <div class="card-body" style="text-align: center;">
+                        <h5 class="card-title">CODE :<%=data.FRCODE %></h5>
+                        <p class="card-text">
+
+                        <ul style="text-align: start;">
+                          <li>
+                            Width : <%=data.FRWIDTH %> cm
+                          </li>
+                          <li>
+                            Depth : <%=data.FRDEPTH %> cm
+                          </li>
+                          <li>
+                            Rebate : <%=data.FRREBATE %> cm
+                          </li>
+                          <li>
+                            Material : <%=data.FRMATERIAL %>
+                          </li>
+                          <li>
+                            Color :<%=data.FRCOLOR %>
+                          </li>
+                          <li>
+                            Price Rate : <%=data.FRCOST %>
+                          </li>
+
+                        </ul>
+                        </p>
+
+
+                      </div>
+                    </div>
+                  </div>
+                  <%  i++; }) %>
+                  <% } else{ %>
+                  <tr>
+                    <td colspan="7">No Data Found</td>
+                  </tr>
+                  <% } %>
+
+
+
+                </div>
+              </div>
+            </div>
+            <div id="popularframe" class="tabcontent">
+              <p>Select frames as per your choice!</p>
+
+              <div id="scrollable">
+
+                <div id="frame_items">
+                  <%
+                if(popularframe.length!=0){
+                var i=1;
+                popularframe.forEach(function(data){
+                %>
+                  <div class="item" style="padding:10px;">
+
+                    <div class="card" style="width: 18rem; background:#f1f0f0; padding: 5%; text-align: center;"
+                      id="cardi">
+
+                      <img class="card-img-top" src="<%=data.FRTHIMG %>" alt="Card image cap"
+                        data-src="<%=data.FRIMG %>" style="width: 30px;" id="<%=data.FRID %>">
+                      <div class="card-body" style="text-align: center;">
+                        <h5 class="card-title">CODE :<%=data.FRCODE %></h5>
+                        <p class="card-text">
+
+                        <ul style="text-align: start;">
+                          <li>
+                            Width : <%=data.FRWIDTH %> cm
+                          </li>
+                          <li>
+                            Depth : <%=data.FRDEPTH %> cm
+                          </li>
+                          <li>
+                            Rebate : <%=data.FRREBATE %> cm
+                          </li>
+                          <li>
+                            Material : <%=data.FRMATERIAL %>
+                          </li>
+                          <li>
+                            Color :<%=data.FRCOLOR %>
+                          </li>
+                          <li>
+                            Price Rate : <%=data.FRCOST %>
+                          </li>
+
+                        </ul>
+                        </p>
+
+
+                      </div>
+                    </div>
+                  </div>
+                  <%  i++; }) %>
+                  <% } else{ %>
+                  <tr>
+                    <td colspan="7">No Data Found</td>
+                  </tr>
+                  <% } %>
+
+
+
+                </div>
+              </div>
+            </div>
+            <div id="onsaleframe" class="tabcontent">
+              <p>Select frames as per your choice!</p>
+
+              <div id="scrollable">
+
+                <div id="frame_items">
+                  <%
+                if(onsaleframe.length!=0){
+                var i=1;
+                onsaleframe.forEach(function(data){
+                %>
+                  <div class="item" style="padding:10px;">
+
+                    <div class="card" style="width: 18rem; background:#f1f0f0; padding: 5%; text-align: center;"
+                      id="cardi">
+
+                      <img class="card-img-top" src="<%=data.FRTHIMG %>" alt="Card image cap"
+                        data-src="<%=data.FRIMG %>" style="width: 30px;" id="<%=data.FRID %>">
+                      <div class="card-body" style="text-align: center;">
+                        <h5 class="card-title">CODE :<%=data.FRCODE %></h5>
+                        <p class="card-text">
+
+                        <ul style="text-align: start;">
+                          <li>
+                            Width : <%=data.FRWIDTH %> cm
+                          </li>
+                          <li>
+                            Depth : <%=data.FRDEPTH %> cm
+                          </li>
+                          <li>
+                            Rebate : <%=data.FRREBATE %> cm
+                          </li>
+                          <li>
+                            Material : <%=data.FRMATERIAL %>
+                          </li>
+                          <li>
+                            Color :<%=data.FRCOLOR %>
+                          </li>
+                          <li>
+                            Price Rate : <%=data.FRCOST %>
+                          </li>
+
+                        </ul>
+                        </p>
+
+
+                      </div>
+                    </div>
+                  </div>
+                  <%  i++; }) %>
+                  <% } else{ %>
+                  <tr>
+                    <td colspan="7">No Data Found</td>
+                  </tr>
+                  <% } %>
+
+
+
+                </div>
+              </div>
+            </div>
+            <div id="colorframe" class="tabcontent">
+              <p>Select frames as per your choice!</p>
+
+              <div id="scrollable">
+
+                <div id="frame_items">
+                  <%
+                if(colorframe.length!=0){
+                var i=1;
+                colorframe.forEach(function(data){
+                %>
+                  <div class="item" style="padding:10px;">
+
+                    <div class="card" style="width: 18rem; background:#f1f0f0; padding: 5%; text-align: center;"
+                      id="cardi">
+
+                      <img class="card-img-top" src="<%=data.FRTHIMG %>" alt="Card image cap"
+                        data-src="<%=data.FRIMG %>" style="width: 30px;" id="<%=data.FRID %>">
+                      <div class="card-body" style="text-align: center;">
+                        <h5 class="card-title">CODE :<%=data.FRCODE %></h5>
+                        <p class="card-text">
+
+                        <ul style="text-align: start;">
+                          <li>
+                            Width : <%=data.FRWIDTH %> cm
+                          </li>
+                          <li>
+                            Depth : <%=data.FRDEPTH %> cm
+                          </li>
+                          <li>
+                            Rebate : <%=data.FRREBATE %> cm
+                          </li>
+                          <li>
+                            Material : <%=data.FRMATERIAL %>
+                          </li>
+                          <li>
+                            Color :<%=data.FRCOLOR %>
+                          </li>
+                          <li>
+                            Price Rate : <%=data.FRCOST %>
+                          </li>
+
+                        </ul>
+                        </p>
+
+
+                      </div>
+                    </div>
+                  </div>
+                  <%  i++; }) %>
+                  <% } else{ %>
+                  <tr>
+                    <td colspan="7">No Data Found</td>
+                  </tr>
+                  <% } %>
+
+
+
+                </div>
+              </div>
+            </div>
+            <div id="stainframe" class="tabcontent">
+              <p>Select frames as per your choice!</p>
+
+              <div id="scrollable">
+
+                <div id="frame_items">
+                  <%
+                if(stainframe.length!=0){
+                var i=1;
+                stainframe.forEach(function(data){
+                %>
+                  <div class="item" style="padding:10px;">
+
+                    <div class="card" style="width: 18rem; background:#f1f0f0; padding: 5%; text-align: center;"
+                      id="cardi">
+
+                      <img class="card-img-top" src="<%=data.FRTHIMG %>" alt="Card image cap"
+                        data-src="<%=data.FRIMG %>" style="width: 30px;" id="<%=data.FRID %>">
+                      <div class="card-body" style="text-align: center;">
+                        <h5 class="card-title">CODE :<%=data.FRCODE %></h5>
+                        <p class="card-text">
+
+                        <ul style="text-align: start;">
+                          <li>
+                            Width : <%=data.FRWIDTH %> cm
+                          </li>
+                          <li>
+                            Depth : <%=data.FRDEPTH %> cm
+                          </li>
+                          <li>
+                            Rebate : <%=data.FRREBATE %> cm
+                          </li>
+                          <li>
+                            Material : <%=data.FRMATERIAL %>
+                          </li>
+                          <li>
+                            Color :<%=data.FRCOLOR %>
+                          </li>
+                          <li>
+                            Price Rate : <%=data.FRCOST %>
+                          </li>
+
+                        </ul>
+                        </p>
+
+
+                      </div>
+                    </div>
+                  </div>
+                  <%  i++; }) %>
+                  <% } else{ %>
+                  <tr>
+                    <td colspan="7">No Data Found</td>
+                  </tr>
+                  <% } %>
+
+
+
+                </div>
+              </div>
+            </div>
+            <div id="blackframe" class="tabcontent">
+              <p>Select frames as per your choice!</p>
+
+              <div id="scrollable">
+
+                <div id="frame_items">
+                  <%
+                if(blackframe.length!=0){
+                var i=1;
+                blackframe.forEach(function(data){
+                %>
+                  <div class="item" style="padding:10px;">
+
+                    <div class="card" style="width: 18rem; background:#f1f0f0; padding: 5%; text-align: center;"
+                      id="cardi">
+
+                      <img class="card-img-top" src="<%=data.FRTHIMG %>" alt="Card image cap"
+                        data-src="<%=data.FRIMG %>" style="width: 30px;" id="<%=data.FRID %>">
+                      <div class="card-body" style="text-align: center;">
+                        <h5 class="card-title">CODE :<%=data.FRCODE %></h5>
+                        <p class="card-text">
+
+                        <ul style="text-align: start;">
+                          <li>
+                            Width : <%=data.FRWIDTH %> cm
+                          </li>
+                          <li>
+                            Depth : <%=data.FRDEPTH %> cm
+                          </li>
+                          <li>
+                            Rebate : <%=data.FRREBATE %> cm
+                          </li>
+                          <li>
+                            Material : <%=data.FRMATERIAL %>
+                          </li>
+                          <li>
+                            Color :<%=data.FRCOLOR %>
+                          </li>
+                          <li>
+                            Price Rate : <%=data.FRCOST %>
+                          </li>
+
+                        </ul>
+                        </p>
+
+
+                      </div>
+                    </div>
+                  </div>
+                  <%  i++; }) %>
+                  <% } else{ %>
+                  <tr>
+                    <td colspan="7">No Data Found</td>
+                  </tr>
+                  <% } %>
+
+
+
+                </div>
+              </div>
+            </div>
+            <div id="silverframe" class="tabcontent">
+              <p>Select frames as per your choice!</p>
+
+              <div id="scrollable">
+
+                <div id="frame_items">
+                  <%
+                if(silverframe.length!=0){
+                var i=1;
+                silverframe.forEach(function(data){
+                %>
+                  <div class="item" style="padding:10px;">
+
+                    <div class="card" style="width: 18rem; background:#f1f0f0; padding: 5%; text-align: center;"
+                      id="cardi">
+
+                      <img class="card-img-top" src="<%=data.FRTHIMG %>" alt="Card image cap"
+                        data-src="<%=data.FRIMG %>" style="width: 30px;" id="<%=data.FRID %>">
+                      <div class="card-body" style="text-align: center;">
+                        <h5 class="card-title">CODE :<%=data.FRCODE %></h5>
+                        <p class="card-text">
+
+                        <ul style="text-align: start;">
+                          <li>
+                            Width : <%=data.FRWIDTH %> cm
+                          </li>
+                          <li>
+                            Depth : <%=data.FRDEPTH %> cm
+                          </li>
+                          <li>
+                            Rebate : <%=data.FRREBATE %> cm
+                          </li>
+                          <li>
+                            Material : <%=data.FRMATERIAL %>
+                          </li>
+                          <li>
+                            Color :<%=data.FRCOLOR %>
+                          </li>
+                          <li>
+                            Price Rate : <%=data.FRCOST %>
+                          </li>
+
+                        </ul>
+                        </p>
+
+
+                      </div>
+                    </div>
+                  </div>
+                  <%  i++; }) %>
+                  <% } else{ %>
+                  <tr>
+                    <td colspan="7">No Data Found</td>
+                  </tr>
+                  <% } %>
+
+
+
+                </div>
+              </div>
+            </div>
+            <div id="alumframe" class="tabcontent">
+              <p>Select frames as per your choice!</p>
+
+              <div id="scrollable">
+
+                <div id="frame_items">
+                  <%
+                if(alumframe.length!=0){
+                var i=1;
+                alumframe.forEach(function(data){
+                %>
+                  <div class="item" style="padding:10px;">
+
+                    <div class="card" style="width: 18rem; background:#f1f0f0; padding: 5%; text-align: center;"
+                      id="cardi">
+
+                      <img class="card-img-top" src="<%=data.FRTHIMG %>" alt="Card image cap"
+                        data-src="<%=data.FRIMG %>" style="width: 30px;" id="<%=data.FRID %>">
+                      <div class="card-body" style="text-align: center;">
+                        <h5 class="card-title">CODE :<%=data.FRCODE %></h5>
+                        <p class="card-text">
+
+                        <ul style="text-align: start;">
+                          <li>
+                            Width : <%=data.FRWIDTH %> cm
+                          </li>
+                          <li>
+                            Depth : <%=data.FRDEPTH %> cm
+                          </li>
+                          <li>
+                            Rebate : <%=data.FRREBATE %> cm
+                          </li>
+                          <li>
+                            Material : <%=data.FRMATERIAL %>
+                          </li>
+                          <li>
+                            Color :<%=data.FRCOLOR %>
+                          </li>
+                          <li>
+                            Price Rate : <%=data.FRCOST %>
+                          </li>
+
+                        </ul>
+                        </p>
+
+
+                      </div>
+                    </div>
+                  </div>
+                  <%  i++; }) %>
+                  <% } else{ %>
+                  <tr>
+                    <td colspan="7">No Data Found</td>
+                  </tr>
+                  <% } %>
+
+
+
+                </div>
+              </div>
+            </div>
+            <div id="rawframe" class="tabcontent">
+              <p>Select frames as per your choice!</p>
+
+              <div id="scrollable">
+
+                <div id="frame_items">
+                  <%
+                if(rawframe.length!=0){
+                var i=1;
+                rawframe.forEach(function(data){
+                %>
+                  <div class="item" style="padding:10px;">
+
+                    <div class="card" style="width: 18rem; background:#f1f0f0; padding: 5%; text-align: center;"
+                      id="cardi">
+
+                      <img class="card-img-top" src="<%=data.FRTHIMG %>" alt="Card image cap"
+                        data-src="<%=data.FRIMG %>" style="width: 30px;" id="<%=data.FRID %>">
+                      <div class="card-body" style="text-align: center;">
+                        <h5 class="card-title">CODE :<%=data.FRCODE %></h5>
+                        <p class="card-text">
+
+                        <ul style="text-align: start;">
+                          <li>
+                            Width : <%=data.FRWIDTH %> cm
+                          </li>
+                          <li>
+                            Depth : <%=data.FRDEPTH %> cm
+                          </li>
+                          <li>
+                            Rebate : <%=data.FRREBATE %> cm
+                          </li>
+                          <li>
+                            Material : <%=data.FRMATERIAL %>
+                          </li>
+                          <li>
+                            Color :<%=data.FRCOLOR %>
+                          </li>
+                          <li>
+                            Price Rate : <%=data.FRCOST %>
+                          </li>
+
+                        </ul>
+                        </p>
+
+
+                      </div>
+                    </div>
+                  </div>
+                  <%  i++; }) %>
+                  <% } else{ %>
+                  <tr>
+                    <td colspan="7">No Data Found</td>
+                  </tr>
+                  <% } %>
+
+
+
+                </div>
+              </div>
+            </div>
+            <div id="floatframe" class="tabcontent">
+              <p>Select frames as per your choice!</p>
+
+              <div id="scrollable">
+
+                <div id="frame_items">
+                  <%
+                if(floatframe.length!=0){
+                var i=1;
+                floatframe.forEach(function(data){
+                %>
+                  <div class="item" style="padding:10px;">
+
+                    <div class="card" style="width: 18rem; background:#f1f0f0; padding: 5%; text-align: center;"
+                      id="cardi">
+
+                      <img class="card-img-top" src="<%=data.FRTHIMG %>" alt="Card image cap"
+                        data-src="<%=data.FRIMG %>" style="width: 30px;" id="<%=data.FRID %>">
+                      <div class="card-body" style="text-align: center;">
+                        <h5 class="card-title">CODE :<%=data.FRCODE %></h5>
+                        <p class="card-text">
+
+                        <ul style="text-align: start;">
+                          <li>
+                            Width : <%=data.FRWIDTH %> cm
+                          </li>
+                          <li>
+                            Depth : <%=data.FRDEPTH %> cm
+                          </li>
+                          <li>
+                            Rebate : <%=data.FRREBATE %> cm
+                          </li>
+                          <li>
+                            Material : <%=data.FRMATERIAL %>
+                          </li>
+                          <li>
+                            Color :<%=data.FRCOLOR %>
+                          </li>
+                          <li>
+                            Price Rate : <%=data.FRCOST %>
+                          </li>
+
+                        </ul>
+                        </p>
+
+
+                      </div>
+                    </div>
+                  </div>
+                  <%  i++; }) %>
+                  <% } else{ %>
+                  <tr>
+                    <td colspan="7">No Data Found</td>
+                  </tr>
+                  <% } %>
+
+
+
+                </div>
+              </div>
+            </div>
+
+          </div>
+          <button class="collapsible" class="btn btn-primary" data-toggle="collapse" href="#mats" role="button"
+            aria-expanded="false" aria-controls="collapseExample">Mat</button>
+          <br>
+          <br>
+          <br>
+
+          <div id="mats" class="collapse">
+            <button class="tablinks btn btn-dark" onclick="openTab(event, 'wmats')">White Core Mats</button>
+            <button class="tablinks btn btn-dark" onclick="openTab(event, 'bmats')">Black Core Mats</button>
+            <button class="tablinks btn btn-dark" onclick="openTab(event, 'mat')">Core Type</button>
+            <br>
+            <br>
+            <div id="mat" class="tabcontent">
+
+              <fieldset>
+                <legend>Choose core color</legend>
+                <div>
+                  <input type="radio" id="whitecore" name="corecolor" value="white">
+                  <label for="white">White Core</label>
+                </div>
+                <div>
+                  <input type="radio" id="blackcore" name="corecolor" value="black">
+                  <label for="balck">Black Core</label>
+                </div>
+                <div>
+                  <input type="radio" id="nocore" name="corecolor" value="none">
+                  <label for="none">None</label>
+                </div>
+                <div>
+                  <input type="radio" id="doublewcore" name="corecolor" value="none">
+                  <label for="doublewcore">Double White Core</label>
+                </div>
+                <div>
+                  <input type="radio" id="doublebcore" name="corecolor" value="none">
+                  <label for="doublebcore">Double Black Core</label>
+                </div>
+              </fieldset>
+
+              <br>
+
+            </div>
+
+            <div id="wmats" class="tabcontent">
+
+              <br>
+
+              <br>
+              <br>
+              <%
+              if(matwdata.length!=0){
+              var i=1;
+              matwdata.forEach(function(data){
+              %>
+              <p>
+              <div>
+                <p> <%=data.MTCOLOR %> : <%=data.MTCODE %></p>
+                <button id="<%=data.MTID %>" style="
+               border: azure;" value="<%=data.MTCODE %>" class="colorbutton">
+                  <span class="dot" style="background: <%=data.MTCODE %>;"></span>
+                </button>
+              </div>
+              </p>
+
+              <%  i++; }) %>
+              <% } else{ %>
+              <tr>
+                <td colspan="7">No Data Found</td>
+              </tr>
+              <% } %>
+
+
+            </div>
+            <div id="bmats" class="tabcontent">
+
+
+              <br>
+              <%
+              if(matbdata.length!=0){
+              var i=1;
+              matbdata.forEach(function(data){
+              %>
+              <div>
+                <p> <%=data.MTCOLOR %> : <%=data.MTCODE %></p>
+                <button id="<%=data.MTID %>" style="
+             border: azure;" value="<%=data.MTCODE %>" class="colorbutton">
+                  <span class="dot" style="background: <%=data.MTCODE %>;"></span>
+                </button>
+              </div>
+              <%  i++; }) %>
+              <% } else{ %>
+              <tr>
+                <td colspan="7">No Data Found</td>
+              </tr>
+              <% } %>
+
+
+            </div>
+          </div>
+
+
+          <button class="collapsible" class="btn btn-primary" data-toggle="collapse" href="#glass" role="button"
+            aria-expanded="false" aria-controls="collapseExample">Glass Type</button>
+          <br>
+          <br>
+          <br>
+          <div id="glass" class="collapse">
+
+
+
+            <div class="row">
+              <div class="col-sm-6">
+                <h3>GLASS</h3>
+                <div>
+                  <input type="radio" id="0" name="glass1" value="Clear Glass" onclick="getdetail(this)">
+                  <label for="glass1">Clear Glass</label>
+                </div>
+                <div>
+                  <input type="radio" id="1" name="glass1" value="Clear Perspex" onclick="getdetail(this)">
+                  <label for="glass1">Clear Perspex</label>
+                </div>
+                <div>
+                  <input type="radio" id="2" name="glass1" value="Non-Reflective Glass" onclick="getdetail(this)">
+                  <label for="glass1">Non-Reflective Glass</label>
+                </div>
+                <div>
+                  <input type="radio" id="3" name="glass1" value="UV Clear Glass" onclick="getdetail(this)">
+                  <label for="glass1">UV Clear Glass</label>
+                </div>
+                <div>
+                  <input type="radio" id="4" name="glass1" value="UV Non-Reflective Glass" onclick="getdetail(this)">
+                  <label for="glass1">UV Non-Reflective Glass</label>
+                </div>
+                <div>
+                  <input type="radio" id="5" name="glass1" value="NO Glass" onclick="getdetail(this)">
+                  <label for="glass1">NO Glass</label>
+                </div>
+              </div>
+              <div class="col-sm-6">
+                <h3>Glass Details</h3>
+                <p id="glass-details"></p>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-sm-6">
+                <h3>Backing</h3>
+                <div>
+                  <input type="radio" id="0" name="back" value="MDF (Wood)" onclick="getbackdetail(this)">
+                  <label for="back">MDF (Wood)</label>
+                </div>
+                <div>
+                  <input type="radio" id="1" name="back" value="Adhesive Foamcore" onclick="getbackdetail(this)">
+                  <label for="back">Adhesive Foamcore</label>
+                </div>
+                <div>
+                  <input type="radio" id="2" name="back" value="Non-Adhesive Foamcore" onclick="getbackdetail(this)">
+                  <label for="back">Non-Adhesive Foamcore</label>
+                </div>
+                <div>
+                  <input type="radio" id="3" name="back" value="No Backing" onclick="getbackdetail(this)">
+                  <label for="back">No Backing</label>
+                </div>
+
+              </div>
+              <div class="col-sm-6">
+                <h3>Backing Details</h3>
+                <p id="back-details"></p>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col-sm-12">
+                <h3>
+                  Hanging System
+
+                </h3>
+                <p>The hanging system will be set up for your frame as you see it in the preview.</p>
+                <div>
+                  <input type="radio" id="hanger" name="hanger" value="Standback + Hanger"
+                    onclick="gethangerdetail(this)">
+                  <label for="back">Standback + Hanger</label>
+                </div>
+                <div>
+                  <input type="radio" id="hanger" name="hanger" value="Metal Hanger" onclick="gethangerdetail(this)">
+                  <label for="back">Metal Hanger</label>
+                </div>
+                <div>
+                  <input type="radio" id="hanger" name="hanger" value="D-rings & String"
+                    onclick="gethangerdetail(this)">
+                  <label for="back">D-rings & String</label>
+                </div>
+              </div>
+            </div>
+
+
+          </div>
+          <button class="collapsible" class="btn btn-primary" data-toggle="collapse" href="#print" role="button"
+            aria-expanded="false" aria-controls="collapseExample">Printing</button>
+          <br>
+          <br>
+          <br>
+          <div id="print" class="collapse">
+
+
+            <div class="row">
+              <div class="col-sm-6">
+                <h3>Printing</h3>
+
+
+                <div>
+                  <input type="radio" id="0" name="print" value="Semi-Gloss (Luster)" onclick="getprintdetail(this)">
+                  <label for="print">Semi-Gloss (Luster)</label>
+                </div>
+                <div>
+                  <input type="radio" id="1" name="print" value="High Gloss (Metallic)" onclick="getprintdetail(this)">
+                  <label for="print">High Gloss (Metallic)</label>
+                </div>
+                <div>
+                  <input type="radio" id="2" name="print" value="Matte Smooth (Archival)"
+                    onclick="getprintdetail(this)">
+                  <label for="print">Matte Smooth (Archival)</label>
+                </div>
+                <div>
+                  <input type="radio" id="3" name="print" value="No Printing (preview only)"
+                    onclick="getprintdetail(this)">
+                  <label for="print">No Printing (preview only)</label>
+                </div>
+              </div>
+              <div class="col-sm-6">
+                <h3>Printing Details</h3>
+                <p id="print-details"></p>
+              </div>
+
+            </div>
+          </div>
+          <br>
+          <button class="collapsible" class="btn btn-primary" data-toggle="collapse" href="#extras" role="button"
+            aria-expanded="false" aria-controls="collapseExample">Extras</button>
+          <br>
+          <br>
+          <br>
+          <div id="extras" class="collapse">
+            <div style="padding: 2%;">
+              <input type="checkbox" id="spacer" name="spacer" value="1">
+              <label for="spacer">SPACER</label>
+              <br>
+              <br>
+              A spacer separates the artwork from the glass!, &nbsp;
+              A spacer cannot be selected with non-reflective glass
+            </div>
+            <br>
+            <button class="tablinks btn btn-dark" onclick="openTab(event, 'innerframe')">Inner Frame</button>
+            <br>
+            <br>
+            <div id="innerframe" class="tabcontent">
+              <p>Select frames as per your choice!</p>
+
+              <div id="scrollable">
+
+                <div id="frame_items">
+                  <%
+                if(innerframe.length!=0){
+                var i=1;
+                innerframe.forEach(function(data){
+                %>
+                  <div class="item" style="padding:10px;">
+
+                    <div class="card" style="width: 18rem; background:#f1f0f0; padding: 5%; text-align: center;"
+                      id="cardi">
+
+                      <img class="card-img-top" src="/<%=data.FRTHIMG %>" alt="Card image cap"
+                        data-src="<%=data.FRIMG %>" style="width: 30px;" id="<%=data.FRID %>">
+                      <div class="card-body" style="text-align: center;">
+                        <h5 class="card-title">CODE :<%=data.FRCODE %></h5>
+                        <p class="card-text">
+
+                        <ul style="text-align: start;">
+                          <li>
+                            Width : <%=data.FRWIDTH %> cm
+                          </li>
+                          <li>
+                            Depth : <%=data.FRDEPTH %> cm
+                          </li>
+                          <li>
+                            Rebate : <%=data.FRREBATE %> cm
+                          </li>
+                          <li>
+                            Material : <%=data.FRMATERIAL %>
+                          </li>
+                          <li>
+                            Color :<%=data.FRCOLOR %>
+                          </li>
+                          <li>
+                            Price Rate : <%=data.FRCOST %>
+                          </li>
+
+                        </ul>
+                        </p>
+
+
+                      </div>
+                    </div>
+                  </div>
+                  <%  i++; }) %>
+                  <% } else{ %>
+                  <tr>
+                    <td colspan="7">No Data Found</td>
+                  </tr>
+                  <% } %>
+
+
+
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div id="side-tab-3" style="background: white;">
+            <div class="row" style="padding: 1%;">
+              <div class="col-md-4">
+                <h4>Quantity </h4> <br>
+                <input type="number" id="quantity" min="1" max="999" aria-label="quantity" step="1" value="1">
+              </div>
+
+              <div class="col-md-4">
+                <h4>Bulk Discount </h4> <br>
+                <div class="select"><select name="bulk_option" id="bulk_option" title="Bulk Options"
+                    style="width: 90%;">
+                    <option value="">
+                      Select a pack size
+                    </option>
+                    <option value="10">
+                      Pack of 10 - Save 10%
+                    </option>
+                    <option value="25">
+                      Pack of 25 - Save 15%
+                    </option>
+                    <option value="50">
+                      Pack of 50 - Save 20%
+                    </option>
+                    <option value="100">
+                      Pack of 100 - Save 25%
+                    </option>
+                    <option value="250">
+                      Pack of 250 - Save 30%
+                    </option>
+                  </select>
+                </div>
+              </div>
+              <div class="col-md-2">
+                <br>
+                <br>
+
+                <br>
+
+                <h5>Total :</h5>
+
+              </div>
+              <div class="col-md-2">
+                <br>
+
+                <br>
+                <br>
+                <h5 id="totalcost">$90.49</h5>
+
+
+              </div>
+            </div>
+
+
+          </div>
+          <br>
+          <div id="cartbutton">
+
+            <button type="button" class="btn btn-secondary btn-dark btn-block" onclick="htmlToJson()"
+              style="background: black; color: white; padding: 1%;">
+              <p style="padding: 2%;">Add To Cart</p>
+            </button>
+          </div>
+          <br>
+
+          <div id=side-tab-4 style="padding:2%; background: white;">
+            <h4 style="font-weight: bold;">Order Summary</h4>
+            <div class="product-summary">
+              <br>
+              <table class="table is-striped is-narrow">
+                <thead>
+                  <tr>
+                    <th>Items</th>
+                    <th>Product Summary</th>
+                    <th>Price Breakdown</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr class="product-summary">
+                    <td>Frame</td>
+                    <td id="selected-frame"></td>
+                    <td></td>
+                  </tr>
+                  <tr class="product-summary">
+                    <td>Glass</td>
+                    <td id="selected-glass"></td>
+                    <td></td>
+                  </tr>
+                  <tr class="product-summary">
+                    <td>Backing</td>
+                    <td id="selected-backing"></td>
+                    <td></td>
+                  </tr>
+                  <tr class="product-summary">
+                    <td>Hanger</td>
+                    <td id="selected-hanger"></td>
+                    <td></td>
+                  </tr>
+                  <tr class="product-summary">
+                    <td>Printing</td>
+                    <td id="printing">No Printing</td>
+                    <td></td>
+                  </tr>
+                  <tr class="product-summary">
+                    <td>Image Size</td>
+                    <td id="imagesize"></td>
+                    <td></td>
+                  </tr>
+                  <tr class="product-summary">
+                    <td>Glass Size (approx)</td>
+                    <td id="glasssize"></td>
+                    <td></td>
+                  </tr>
+                  <tr class="product-summary__row">
+                    <td>Outside Size (approx)</td>
+                    <td id="outsidesize"></td>
+                    <td></td>
+                  </tr>
+                  <tr class="product-summary__row">
+
+                    <td>Total Quantity:</td>
+
+
+                    <td id="totalquantity"></td>
+                    <td></td>
+                  </tr>
+                  <tr class="product-summary__row" style="visibility: hidden;">
+                    <td></td>
+                    <td>Total Cost :</td>
+
+                    <td id="totalprice"></td>
+                  </tr>
+                  <tr class="product-summary__row" style="visibility: hidden;">
+                    <td>Mat Selected</td>
+                    <td id="matcolor"></td>
+                    <td id="mattype"></td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+        </div>
+
+
+      </div>
+      <br>
+    </div>
+    <br>
+    <hr style="width: 1px solid black;">
+    <div>
+
+    </div>
+
+    <script src="/javascripts/main.js"></script>
+  </main>
+</body>
+
+</html>
