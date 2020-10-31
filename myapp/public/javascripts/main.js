@@ -77,6 +77,7 @@ if (document.getElementById('cus_Frame')) {
         frame_Width = width<height? width*113.38582677 * 10/100:height*113.38582677*10/100;
 
         frameadder();
+        innerFrameadder();
         imageDraw();
         document.getElementById("imagesize").innerHTML = width + 'cm' + 'X' + height + 'cm'; // set the summary part//
         document.getElementById("glasssize").innerHTML = width + 'cm' + 'X' + height + 'cm'; // set the summary part//
@@ -98,6 +99,7 @@ if (document.getElementById('cus_Frame')) {
         console.log(ChangeWidth);
 
         frameadder();
+        innerFrameadder();
         imageDraw();
         document.getElementById("imagesize").innerHTML = width + 'cm' + 'X' + height + 'cm'; // set the summary part//
         document.getElementById("glasssize").innerHTML = width + 'cm' + 'X' + height + 'cm'; // set the summary part//
@@ -408,6 +410,7 @@ if (document.getElementById('cus_Frame')) {
     //  Code for drawing frame on Canvas
     // ***************************************************
     var imgName;
+    var innerFrameImgName;
     var canvasWidth;
     var canvasHeight;
     var frameWidth;
@@ -508,7 +511,7 @@ if (document.getElementById('cus_Frame')) {
 
 
         // clears the canvas pixels 
-        ctx.clearRect(0, 0, 600, 800);
+        //ctx.clearRect(0, 0, 600, 800);
         // creating a new image object   
         let img = new Image();
         img.onload = () => {
@@ -533,12 +536,133 @@ if (document.getElementById('cus_Frame')) {
 
     }
 
+    function innerFrameadder(id) {
+
+        // retriving full size frame image source
+        // var id = "id";
+        // var res = id.concat(number);
+
+        if (typeof (id) !== 'undefined') {
+            innerFrameImgName = document.getElementById(id).getAttribute('data-src');
+        }
+
+
+        let ctx = canvasFrGr.getContext('2d');
+
+        canvasWidth = ChangeWidth;
+        canvasHeight = ChangeHeight;
+
+
+        frameWidth = frame_Width;
+
+        // document.getElementById('canvasFrGr').width = canvasWidth;
+        // document.getElementById('canvasFrGr').height = canvasHeight;
+
+        // document.getElementById('canvasBkGr').width = canvasWidth;
+        // document.getElementById('canvasBkGr').height = canvasHeight;
+
+        //console.log(frameWidth);
+        function topbottom(pathPoints, img, x, y, a, b) {
+
+            // save the unclipped context
+            ctx.save();
+
+            // define the path that will be clipped to
+            ctx.beginPath();
+            ctx.moveTo(pathPoints[0], pathPoints[1]);
+            // this demo has a known number of polygon points
+            // but include a loop of "lineTo's" if you have a variable number of points
+            ctx.lineTo(pathPoints[2], pathPoints[3]);
+            ctx.lineTo(pathPoints[4], pathPoints[5]);
+            ctx.lineTo(pathPoints[6], pathPoints[7]);
+            ctx.closePath();
+
+            // make the current path a clipping path
+            ctx.clip();
+            ctx.scale(a, b);
+
+            // draw the image which will be clipped except in the clipping path
+            ctx.drawImage(img, x, y, canvasWidth, frameWidth);
+
+            ctx.drawImage(img, x, y, canvasWidth + canvasWidth, frameWidth);
+            ctx.drawImage(img, x - canvasWidth, y, canvasWidth + canvasWidth, frameWidth);
+
+            // restore the unclipped context (==undo the clipping path)
+            ctx.restore();
+        }
+
+        function sides(pathPoints, img, x, y, a, b, d) {
+
+            // save the unclipped context
+            ctx.save();
+
+            // define the path that will be clipped to
+            ctx.beginPath();
+            ctx.moveTo(pathPoints[0], pathPoints[1]);
+            // this demo has a known number of polygon points
+            // but include a loop of "lineTo's" if you have a variable number of points
+            ctx.lineTo(pathPoints[2], pathPoints[3]);
+            ctx.lineTo(pathPoints[4], pathPoints[5]);
+            ctx.lineTo(pathPoints[6], pathPoints[7]);
+            ctx.closePath();
+
+
+            // make the current path a clipping path
+            ctx.clip();
+            ctx.scale(a, b);
+            ctx.rotate(d * Math.PI / 180);
+            // draw the image which will be clipped except in the clipping path
+
+            for(i=0;i<20;i++)
+            {
+                ctx.drawImage(img, x + canvasWidth*i, y, canvasWidth + canvasWidth, frameWidth);
+                ctx.drawImage(img, x - canvasWidth*i, y, canvasWidth + canvasWidth, frameWidth);
+
+            }
+            // restore the unclipped context (==undo the clipping path)
+            ctx.restore();
+        }
+
+
+
+        // clears the canvas pixels 
+        // creating a new image object   
+        let img = new Image();
+        img.onload = () => {
+
+            var pat = ctx.createPattern(img, "repeat");
+
+            topbottom([frameWidth, frameWidth, canvasWidth-frameWidth, frameWidth, (canvasWidth-frameWidth-frameWidth), frameWidth+frameWidth, frameWidth+frameWidth, frameWidth+frameWidth], img, frameWidth, frameWidth);
+
+            topbottom([frameWidth, canvasHeight-frameWidth, canvasWidth-frameWidth, canvasHeight-frameWidth, (canvasWidth - frameWidth-frameWidth), (canvasHeight - frameWidth-frameWidth), frameWidth+frameWidth, canvasHeight - frameWidth-frameWidth], img, frameWidth, -canvasHeight+frameWidth, 1, -1);
+
+            sides([frameWidth, frameWidth, frameWidth, canvasHeight-frameWidth, frameWidth+frameWidth, (canvasHeight - frameWidth-frameWidth), frameWidth+frameWidth, frameWidth+frameWidth], img, -canvasWidth, frameWidth, 1, 1, 270);
+
+            sides([canvasWidth-frameWidth, frameWidth, canvasWidth-frameWidth, canvasHeight-frameWidth, canvasWidth - frameWidth-frameWidth, canvasHeight - frameWidth-frameWidth, canvasWidth - frameWidth-frameWidth, frameWidth+frameWidth], img, 0, -canvasWidth+frameWidth, 1, 1, 90);
+            
+            imageDraw();
+
+        };
+        // fetching image source
+        img.src = './images/' + innerFrameImgName;
+
+
+    }
+
     $(".card-img-top").on('click', function () {
 
         var code = $(this).attr('id');
         document.getElementById('selected-frame').innerHTML = code;
         //console.log($(this).attr('id'));
         frameadder($(this).attr('id'));
+    })
+
+    $(".card-img-top-inner").on('click', function () {
+
+        var code = $(this).attr('id');
+        document.getElementById('selected-frame').innerHTML = code;
+        //console.log($(this).attr('id'));
+        innerFrameadder($(this).attr('id'));
     })
 
 }

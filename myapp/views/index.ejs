@@ -28,6 +28,7 @@
         <div class="sec-frame" style="text-align: center;">
           <div>
             <canvas id="canvasFrGr" width="600" height="800"></canvas>
+            <canvas id="canvasInnerFrame" width="600" height="800"></canvas>
             <canvas id="canvasBkGr" width="600" height="800"></canvas>
           </div>
         </div>
@@ -211,7 +212,7 @@
                     <div class="card" style="width: 18rem; background:#f1f0f0; padding: 5%; text-align: center;"
                       id="cardi">
 
-                      <img class="card-img-top" src="<%=data.FRTHIMG %>" alt="Card image cap"
+                      <img class="card-img-top " src="<%=data.FRTHIMG %>" alt="Card image cap"
                         data-src="<%=data.FRIMG %>" style="width: 30px;" id="<%=data.FRID %>">
                       <div class="card-body" style="text-align: center;">
                         <h5 class="card-title">CODE :<%=data.FRCODE %></h5>
@@ -1138,8 +1139,8 @@
                     <div class="card" style="width: 18rem; background:#f1f0f0; padding: 5%; text-align: center;"
                       id="cardi">
 
-                      <img class="card-img-top" src="/<%=data.FRTHIMG %>" alt="Card image cap"
-                        data-src="<%=data.FRIMG %>" style="width: 30px;" id="<%=data.FRID %>">
+                      <img class="card-img-top-inner" src="/<%=data.FRTHIMG %>" alt="Card image cap"
+                        data-src="<%=data.FRIMG %>" style="width: 30px;" id="inner<%=data.FRID %>">
                       <div class="card-body" style="text-align: center;">
                         <h5 class="card-title">CODE :<%=data.FRCODE %></h5>
                         <p class="card-text">
