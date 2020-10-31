@@ -96,7 +96,6 @@ if (document.getElementById('cus_Frame')) {
 
         ChangeWidth = width*113.38582677;
         frame_Width = width<height? width*113.38582677 * 10/100:height*113.38582677*10/100;
-        console.log(ChangeWidth);
 
         frameadder();
         innerFrameadder();
@@ -191,23 +190,28 @@ if (document.getElementById('cus_Frame')) {
 
     $("#sizes").on('change select', function () {
 
-
         var size = $.parseJSON($(this).val());
 
         var width = parseInt(size['width']);
         var height = parseInt(size['height']);
-        var vwidth = parseFloat(size['vwidth']);
-        var vheight = parseFloat(size['vheight']);
+
+        document.getElementById('width').value = (parseInt(size['width']));
+        document.getElementById('height').value = (parseInt(size['height']));
         frame_Width = width + height;
 
+        ChangeWidth = width*113.38582677;
+        ChangeHeight = height*113.38582677 ;
+
+        frame_Width = width<height? width*113.38582677 * 10/100:height*113.38582677*10/100;
+
         frameadder();
-
-
-        document.getElementById("imagesize").innerHTML = vwidth + 'cm' + 'X' + vheight + 'cm'; // set the summary part//
-        document.getElementById("glasssize").innerHTML = vwidth + 'cm' + 'X' + vheight + 'cm'; //set the summary part//
-        outheight = parseFloat(vheight) + 3.0;
-        outwidth = parseFloat(vwidth) + 3.0;
-        document.getElementById("outsidesize").innerHTML = outwidth + 'cm' + 'X' + outheight + 'cm';
+        innerFrameadder();
+        imageDraw();
+        document.getElementById("imagesize").innerHTML = width + 'cm' + 'X' + height + 'cm'; // set the summary part//
+        document.getElementById("glasssize").innerHTML = width + 'cm' + 'X' + height + 'cm'; // set the summary part//
+        outheight = parseFloat(height) + 3.0;
+        outwidth = parseFloat(width) + 3.0;
+        document.getElementById("outsidesize").innerHTML = outwidth + 'cm' + 'X' + outheight + 'cm'; // set the summary part//
 
     })
 
