@@ -311,17 +311,20 @@ if (document.getElementById('cus_Frame')) {
             ctx.lineTo(pathPoints[6], pathPoints[7]);
             ctx.closePath();
 
-
+            
             // make the current path a clipping path
             ctx.clip();
             ctx.scale(a, b);
             ctx.rotate(d * Math.PI / 180);
             // draw the image which will be clipped except in the clipping path
-            ctx.drawImage(img, x, y, canvasWidth, frameWidth);
+            for(i=0;i<20;i++)
+            {
+                ctx.drawImage(img, x + canvasWidth*i, y, canvasWidth + canvasWidth, frameWidth);
+                ctx.drawImage(img, x - canvasWidth*i, y, canvasWidth + canvasWidth, frameWidth);
 
-            ctx.drawImage(img, x, y, canvasWidth + canvasWidth, frameWidth);
-            ctx.drawImage(img, x - canvasWidth, y, canvasWidth + canvasWidth, frameWidth);
-
+            }
+            // ctx.drawImage(img, x, y, (canvasHeight*2), frameWidth);
+            // ctx.drawImage(img, x - (canvasHeight*2), y, (canvasHeight*2), frameWidth);
 
 
             // restore the unclipped context (==undo the clipping path)
@@ -491,13 +494,13 @@ if (document.getElementById('cus_Frame')) {
             ctx.scale(a, b);
             ctx.rotate(d * Math.PI / 180);
             // draw the image which will be clipped except in the clipping path
-            ctx.drawImage(img, x, y, canvasWidth, frameWidth);
 
-            ctx.drawImage(img, x, y, canvasWidth + canvasWidth, frameWidth);
-            ctx.drawImage(img, x - canvasWidth, y, canvasWidth + canvasWidth, frameWidth);
+            for(i=0;i<20;i++)
+            {
+                ctx.drawImage(img, x + canvasWidth*i, y, canvasWidth + canvasWidth, frameWidth);
+                ctx.drawImage(img, x - canvasWidth*i, y, canvasWidth + canvasWidth, frameWidth);
 
-
-
+            }
             // restore the unclipped context (==undo the clipping path)
             ctx.restore();
         }

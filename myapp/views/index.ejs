@@ -25,11 +25,12 @@
 
     <div class="row">
       <div class="col-md-6">
-
-
-
-        <canvas id="canvasFrGr" width="600px" height="800px"></canvas>
-        <canvas id="canvasBkGr" width="600px" height="800px"></canvas>
+        <div class="sec-frame" style="text-align: center;">
+          <div>
+            <canvas id="canvasFrGr" width="600" height="800"></canvas>
+            <canvas id="canvasBkGr" width="600" height="800"></canvas>
+          </div>
+        </div>
 
       </div>
 
@@ -47,7 +48,9 @@
             <div class="row">
               <div class="col-md-6">
                 <button type="button" class="btn btn-dark" style="background : black">
-                  <input id="fileUpload" type='file' onchange="readURL(this)" /></button>
+                  <input id="fileUpload" type='file' onchange="readURL(this)" style="
+                  width: 100%;
+              "/></button>
               </div>
 
             </div>
