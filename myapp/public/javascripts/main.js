@@ -12,6 +12,7 @@ var width = 10.2;
 var height = 15.2;
 var outwidth = 13.2;
 var outheight = 18.2;
+var cart = [];
 
 
 
@@ -699,6 +700,8 @@ $('#fileupf').submit(function (e) {
         type: 'POST',
         success: function (data) {
             $("#status").empty().text("Thank you for uploading");
+            // document.getElementById('fileupf').value = fd;
+            console.log(fd);
             bt.disabled = true;
         }
     });
@@ -723,7 +726,7 @@ function readURL(input) {
 // function to convert html table to json//
 
 function htmlToJson() {
-    var cart = [];
+    
     var headersText = [];
     var $headers = $("th");
 
@@ -751,6 +754,22 @@ function htmlToJson() {
 
 
     alert(JSON.stringify(myObj));
+    sendJSON();
+
+}
+
+function sendJSON() {
+
+    var xmlhttp = new XMLHttpRequest();   // new HttpRequest instance
+    xmlhttp.onreadystatechange = function () {
+        if (this.readyState == 4 && this.status == 200) {
+            document.getElementById("result").innerHTML =
+                this.responseText;
+        }
+    };
+    xmlhttp.open("POST", "http://localhost:3000");
+    xmlhttp.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
+    xmlhttp.send(JSON.stringify(cart));
 
 }
 

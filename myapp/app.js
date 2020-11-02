@@ -9,18 +9,18 @@ var logger = require('morgan');
 var bodyParser = require("body-parser");
 const Shopify = require('shopify-api-node');
 const Shopifybuy = require('shopify-api-node');
-const {v4:uuid} = require('uuid');
+const { v4: uuid } = require('uuid');
 
 
-process.env.AWS_ACCESS_KEY_ID     = 'AKIAVVKH7VVUECHBMXHB';
+process.env.AWS_ACCESS_KEY_ID = 'AKIAVVKH7VVUECHBMXHB';
 process.env.AWS_SECRET_ACCESS_KEY = '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';
-process.env.AWS_REGION            = 'us-east-1';
+process.env.AWS_REGION = 'us-east-1';
 
 var AWS = require('aws-sdk');
-var s3  = new AWS.S3();
+var s3 = new AWS.S3();
 
 var indexRouter = require('./routes/index');
-const upload = multer({dest: __dirname + '/uploads/images'});
+const upload = multer({ dest: __dirname + '/uploads/images' });
 
 var app = express();
 
@@ -38,16 +38,16 @@ app.use(bodyParser.json({ limit: "100mb" }));
 app.use(bodyParser.urlencoded({ limit: "100mb", extended: true }));
 
 
-app.post('/upload', upload.single('photo'), (req, res,next) => {
+app.post('/upload', upload.single('photo'), (req, res, next) => {
   console.log(req.file);
   console.log(req.file.path);
-    var tmp_path = req.file.path;
-    var target_path = 'uploads/images/'+uuid()+req.file.originalname;
-     var src = fs.createReadStream(tmp_path);
+  var tmp_path = req.file.path;
+  var target_path = 'uploads/images/' + uuid() + req.file.originalname;
+  var src = fs.createReadStream(tmp_path);
   var dest = fs.createWriteStream(target_path);
   src.pipe(dest);
-  src.on('end', function() { res.end("File is uploaded"); });
-  src.on('error', function(err) { return res.end("Error uploading file."); });
+  src.on('end', function () { res.end("File is uploaded"); });
+  src.on('error', function (err) { return res.end("Error uploading file."); });
 
 });
 
@@ -58,15 +58,15 @@ const shopify1 = new Shopify({
 app.use('/', indexRouter);
 
 
-var shopifyRouter=require('./routes/shopify');
+var shopifyRouter = require('./routes/shopify');
 app.post('/shopify', (req, res) => {
-    console.log(req.body);
-    shopify1.checkout
-  .create(req.body)
-  .then((orders) => console.log(orders))
-  .catch((err) => console.error(err))
+  console.log(req.body);
+  shopify1.checkout
+    .create(req.body)
+    .then((orders) => console.log(orders))
+    .catch((err) => console.error(err))
 
-    res.send({ "message": "OK" });
+  res.send({ "message": "OK" });
 })
 
 
