@@ -12,7 +12,6 @@ var width = 10.2;
 var height = 15.2;
 var outwidth = 13.2;
 var outheight = 18.2;
-var cart = [];
 
 
 
@@ -687,6 +686,8 @@ $('#df').submit(function () {
     return false;
 });
 
+var uploadedFilePath;
+
 $('#fileupf').submit(function (e) {
     var bt = document.getElementById('btSubmit');
     $("#status").empty().text("Photo uploading...");
@@ -699,9 +700,8 @@ $('#fileupf').submit(function (e) {
         contentType: false,
         type: 'POST',
         success: function (data) {
+            uploadedFilePath=data;
             $("#status").empty().text("Thank you for uploading");
-            // document.getElementById('fileupf').value = fd;
-            console.log(fd);
             bt.disabled = true;
         }
     });
@@ -726,7 +726,7 @@ function readURL(input) {
 // function to convert html table to json//
 
 function htmlToJson() {
-    
+    var cart = [];
     var headersText = [];
     var $headers = $("th");
 
@@ -747,29 +747,24 @@ function htmlToJson() {
 
     // Let's put this in the object like you want and convert to JSON (Note: jQuery will also do this for you on the Ajax request)
     var myObj = {
-        "Cart Data": cart
+        cart, "otherData": [{"image": uploadedFilePath}]
     };
 
     $.post("/shopify", { json_string: JSON.stringify(myObj) });
+  //  $.post("/store-data", JSON.stringify(myObj));
 
+    $.ajax({
+        url: '/store-data',
+        processData: false,
+        contentType: "application/json",
+        type: 'POST',
+        data: JSON.stringify(myObj),
+        success: function (data) {
+
+        }
+    });
 
     alert(JSON.stringify(myObj));
-    sendJSON();
-
-}
-
-function sendJSON() {
-
-    var xmlhttp = new XMLHttpRequest();   // new HttpRequest instance
-    xmlhttp.onreadystatechange = function () {
-        if (this.readyState == 4 && this.status == 200) {
-            document.getElementById("result").innerHTML =
-                this.responseText;
-        }
-    };
-    xmlhttp.open("POST", "http://localhost:3000");
-    xmlhttp.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
-    xmlhttp.send(JSON.stringify(cart));
 
 }
 

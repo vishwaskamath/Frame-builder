@@ -1,13 +1,14 @@
 -- phpMyAdmin SQL Dump
--- version 5.0.2
+-- version 4.9.1
 -- https://www.phpmyadmin.net/
 --
--- Host: 127.0.0.1
--- Generation Time: Oct 31, 2020 at 08:47 AM
--- Server version: 10.4.13-MariaDB
--- PHP Version: 7.4.8
+-- Host: localhost
+-- Generation Time: Nov 02, 2020 at 05:53 PM
+-- Server version: 8.0.18
+-- PHP Version: 7.3.11
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET AUTOCOMMIT = 0;
 START TRANSACTION;
 SET time_zone = "+00:00";
 
@@ -20,6 +21,38 @@ SET time_zone = "+00:00";
 --
 -- Database: `frame`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `frame_orders`
+--
+
+CREATE TABLE `frame_orders` (
+  `ID` int(11) NOT NULL,
+  `IMAGE` varchar(200) DEFAULT NULL,
+  `FRAME` varchar(100) DEFAULT NULL,
+  `GLASS` varchar(100) DEFAULT NULL,
+  `BACKING` varchar(100) DEFAULT NULL,
+  `HANGER` varchar(100) DEFAULT NULL,
+  `PRINTING` varchar(100) DEFAULT NULL,
+  `IMAGE_SIZE` varchar(100) DEFAULT NULL,
+  `GLASS_SIZE` varchar(100) DEFAULT NULL,
+  `OUTSIDE_SIZE` varchar(100) DEFAULT NULL,
+  `TOTAL_QUANTITY` varchar(11) DEFAULT NULL,
+  `TOTAL_PRICE` varchar(100) DEFAULT NULL,
+  `MAT_SELECTED` varchar(100) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+--
+-- Dumping data for table `frame_orders`
+--
+
+INSERT INTO `frame_orders` (`ID`, `IMAGE`, `FRAME`, `GLASS`, `BACKING`, `HANGER`, `PRINTING`, `IMAGE_SIZE`, `GLASS_SIZE`, `OUTSIDE_SIZE`, `TOTAL_QUANTITY`, `TOTAL_PRICE`, `MAT_SELECTED`) VALUES
+(1, NULL, '', '', '', '', 'No Printing', '', '', '', '', 'Total Cost :', ''),
+(2, NULL, '', '', '', '', 'No Printing', '', '', '', '', 'Total Cost :', ''),
+(3, NULL, '', '', '', '', 'No Printing', '', '', '', '', 'Total Cost :', ''),
+(4, 'uploads/images/3cf159fa-308f-4cb4-bada-7d90c2cde371556e2bd9-5d1f-4322-8df2-a636eca381e1.jpg', 'i104', '', '', '', 'No Printing', '', '', '', '', 'Total Cost :', '');
 
 -- --------------------------------------------------------
 
@@ -39,7 +72,7 @@ CREATE TABLE `frame_type` (
   `FRREBATE` float NOT NULL,
   `category` varchar(255) NOT NULL,
   `FRCOST` float NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Dumping data for table `frame_type`
@@ -70,7 +103,7 @@ CREATE TABLE `mat_type` (
   `MTCOLOR` varchar(30) DEFAULT NULL,
   `MTCODE` varchar(10) NOT NULL,
   `category` varchar(255) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Dumping data for table `mat_type`
@@ -87,6 +120,12 @@ INSERT INTO `mat_type` (`MTID`, `MTCOLOR`, `MTCODE`, `category`) VALUES
 --
 
 --
+-- Indexes for table `frame_orders`
+--
+ALTER TABLE `frame_orders`
+  ADD PRIMARY KEY (`ID`);
+
+--
 -- Indexes for table `frame_type`
 --
 ALTER TABLE `frame_type`
@@ -101,6 +140,12 @@ ALTER TABLE `mat_type`
 --
 -- AUTO_INCREMENT for dumped tables
 --
+
+--
+-- AUTO_INCREMENT for table `frame_orders`
+--
+ALTER TABLE `frame_orders`
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `mat_type`

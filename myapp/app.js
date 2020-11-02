@@ -20,6 +20,8 @@ var AWS = require('aws-sdk');
 var s3 = new AWS.S3();
 
 var indexRouter = require('./routes/index');
+var storeData = require('./routes/store-data');
+
 const upload = multer({ dest: __dirname + '/uploads/images' });
 
 var app = express();
@@ -39,15 +41,17 @@ app.use(bodyParser.urlencoded({ limit: "100mb", extended: true }));
 
 
 app.post('/upload', upload.single('photo'), (req, res, next) => {
-  console.log(req.file);
-  console.log(req.file.path);
+  //console.log(req.file);
+  //console.log(req.file.path);
   var tmp_path = req.file.path;
   var target_path = 'uploads/images/' + uuid() + req.file.originalname;
   var src = fs.createReadStream(tmp_path);
   var dest = fs.createWriteStream(target_path);
   src.pipe(dest);
-  src.on('end', function () { res.end("File is uploaded"); });
+  src.on('end', function () { res.end(target_path); });
   src.on('error', function (err) { return res.end("Error uploading file."); });
+
+  return ;
 
 });
 
@@ -56,11 +60,12 @@ const shopify1 = new Shopify({
   accessToken: '76344bcecf8f6b59d4ea1d5706ece042'
 });
 app.use('/', indexRouter);
+app.use('/store-data', storeData);
 
 
 var shopifyRouter = require('./routes/shopify');
 app.post('/shopify', (req, res) => {
-  console.log(req.body);
+ // console.log(req.body);
   shopify1.checkout
     .create(req.body)
     .then((orders) => console.log(orders))
