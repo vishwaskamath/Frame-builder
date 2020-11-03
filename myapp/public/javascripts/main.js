@@ -72,9 +72,9 @@ if (document.getElementById('cus_Frame')) {
         height = document.getElementById('height').value;
         width = document.getElementById('width').value;
 
-        ChangeHeight = height * 113.38582677;
+        ChangeHeight = height * 113.38582677/2; 
 
-        frame_Width = width < height ? width * 113.38582677 * 10 / 100 : height * 113.38582677 * 10 / 100;
+        frame_Width = width < height ? width * 113.38582677/2 * 10 / 100 : height * 113.38582677/2 * 10 / 100;
 
         frameadder();
         innerFrameadder();
@@ -94,8 +94,8 @@ if (document.getElementById('cus_Frame')) {
         width = document.getElementById('width').value;
         height = document.getElementById('height').value;
 
-        ChangeWidth = width * 113.38582677;
-        frame_Width = width < height ? width * 113.38582677 * 10 / 100 : height * 113.38582677 * 10 / 100;
+        ChangeWidth = width * 113.38582677/2;
+        frame_Width = width < height ? width * 113.38582677/2 * 10 / 100 : height * 113.38582677/2 * 10 / 100;
 
         frameadder();
         innerFrameadder();
@@ -199,10 +199,10 @@ if (document.getElementById('cus_Frame')) {
         document.getElementById('height').value = (parseInt(size['height']));
         frame_Width = width + height;
 
-        ChangeWidth = width * 113.38582677;
-        ChangeHeight = height * 113.38582677;
+        ChangeWidth = width * 113.38582677/2;
+        ChangeHeight = height * 113.38582677/2;
 
-        frame_Width = width < height ? width * 113.38582677 * 10 / 100 : height * 113.38582677 * 10 / 100;
+        frame_Width = width < height ? width * 113.38582677/2 * 10 / 100 : height * 113.38582677/2 * 10 / 100;
 
         frameadder();
         innerFrameadder();
@@ -366,11 +366,14 @@ if (document.getElementById('cus_Frame')) {
 
         let ctx = canvasBkGr.getContext('2d');
 
-
         // clearing previous image picture
         ctx.clearRect(0, 0, canvasWidth, canvasHeight);
         let img = new Image();
+     
+
+        if (typeof (photoImage) !== 'undefined') {
         img.src = photoImage;
+
 
         img.onload = () => {
             ctx.drawImage(img, frameWidth + matWidth / 2, frameWidth + matHeight / 2, canvasWidth - (frameWidth * 2) - matWidth, canvasHeight - (frameWidth * 2) - matHeight);
@@ -382,6 +385,7 @@ if (document.getElementById('cus_Frame')) {
         ctx.strokeRect(frameWidth + matWidth / 2, frameWidth + matHeight / 2, canvasWidth - (frameWidth * 2) - matWidth, canvasHeight - (frameWidth * 2) - matHeight);
         //FUCNITON FOR DOUBLE 
     }
+    }
 
     //code for drawing dual core and displaying image//
     function imageDrawdouble() {
@@ -391,6 +395,7 @@ if (document.getElementById('cus_Frame')) {
         // clearing previous image picture
         ctx.clearRect(0, 0, 800, 800);
         let img = new Image();
+        if (typeof (photoImage) !== 'undefined') {
         img.src = photoImage;
 
         img.onload = () => {
@@ -407,6 +412,7 @@ if (document.getElementById('cus_Frame')) {
         ctx.strokeRect(frameWidth + matWidth / 2 - doubleMargin, frameWidth + matHeight / 2 - doubleMargin, canvasWidth - (frameWidth * 2) - matWidth + doubleMargin * 2, canvasHeight - (frameWidth * 2) - matHeight + doubleMargin * 2);
 
 
+    }
     }
 
     // ***************************************************
@@ -625,7 +631,8 @@ if (document.getElementById('cus_Frame')) {
         }
 
 
-
+if(typeof (photoImage) !== 'undefined')
+{
         // clears the canvas pixels 
         // creating a new image object   
         let img = new Image();
@@ -646,8 +653,7 @@ if (document.getElementById('cus_Frame')) {
         };
         // fetching image source
         img.src = './images/' + innerFrameImgName;
-
-
+    }
     }
 
     $(".card-img-top").on('click', function () {
